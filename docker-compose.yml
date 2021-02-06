@@ -1,0 +1,26 @@
+version: "3"
+
+
+services:
+  ##########################
+  ### SETUP SERVER CONTAINER
+  ##########################
+  server:
+    build: .
+    ports:
+      - ${NODE_PORT}:${NODE_PORT}
+    volumes:
+      # Map client src to server src to hot reload
+      - .:/app/server/
+    env_file:
+      - ./.env
+    command: nodemon -L src/app.js
+
+  db:
+    image: mongo
+    ports:
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
