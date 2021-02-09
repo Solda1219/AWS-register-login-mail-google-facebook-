@@ -174,3 +174,6 @@ The REST API to the example app is described below.
     {
         msg: 'Password Update Successfully!' 
     }
+
+### Author
+    Vladimir
